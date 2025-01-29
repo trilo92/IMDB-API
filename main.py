@@ -44,6 +44,5 @@ def get_movie_ratings(movie_title: str):
         raise HTTPException(status_code=404, detail="Movie not found")
         return {"title": movie_title, "ratings": movies_db[movie_title]}
 
-        uvicorn main:app --reload
 
         
