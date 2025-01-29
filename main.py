@@ -25,7 +25,7 @@ def rate_movie(movie: MovieRating):
         movies_db[movie.title].append(movie.rating) #add rating to the movie
         return {"message": f"Rating for movie {movie.title} added successfully"}
 @app.get("/get_average_rating/{movie_title}")
-    if movie_title not in movies_db or not movies_db[movie_title])
+    if movie_title not in movies_db or not movies_db[movie_title]:
         raise HTTPException(status_code=404, detail="Movie not found")
 
         avg_rating = sum(movies_db[movie_title] / len(movies_db[movie_title])
@@ -58,3 +58,4 @@ def get_movie_ratings(movie_title: str):
         "title": "Inception",
         "ratings": [9] #get movie ratings
      }
+     
