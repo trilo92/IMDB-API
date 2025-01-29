@@ -10,7 +10,6 @@ movies_db: Dict[str, List[int]] = {}
 class MovieRating(BaseModel):
     title: str
     rating: int # rating between 1 to 10. 
-
 @app.get("/")
 def home():
     return {"message": "Welcome to the IMDB Rating API"}
