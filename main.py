@@ -4,12 +4,12 @@ from typing import List, Dict
 
 app = FastAPI()
 
-#Eksempel på database (simulert)
+#example of a database
 movies_db: Dict[str, List[int]] = {}
 
 class MovieRating(BaseModel):
     title: str
-    rating: int # Rating må være mellom 1 og 10. 
+    rating: int # rating between 1 to 10. 
 
 @app.get("/")
 def home():
@@ -22,7 +22,7 @@ def rate_movie(movie: MovieRating):
     if movie.title not in movies_db:
         movies_db[movie.title] = []
 
-        movies_db[movie.title].append(movie.rating) # Legger til rating i listen
+        movies_db[movie.title].append(movie.rating) #add rating to the movie
         return {"message": f"Rating for movie {movie.title} added successfully"}
 @app.get("/get_average_rating/{movie_title}")
     if movie_title not in movies_db or not movies_db[movie_title])
