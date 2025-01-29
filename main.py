@@ -1,7 +1,3 @@
-pip install fastapi uvicorn
-# Importerer FastAPI og HTTPException fra fastapi, samt BaseModel fra pydantic. Vi importerer også List og Dict fra typing.
-
-
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from typing import List, Dict
@@ -44,5 +40,21 @@ def get_movie_ratings(movie_title: str):
         raise HTTPException(status_code=404, detail="Movie not found")
         return {"title": movie_title, "ratings": movies_db[movie_title]}
 
+#Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
-        
+     {
+        "title": "Inception", #add movie and rating
+        "rating": 9
+     } 
+     {
+        #get average rating
+        "title": "Inception",
+        "average_rating": 9.0
+     }  
+     {
+        "movies": ["Inception"] #get all movies
+     }
+     {
+        "title": "Inception",
+        "ratings": [9] #get movie ratings
+     }
