@@ -1,19 +1,13 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
-from typing import Dict, List
 
 app = FastAPI()
 
-#example of a database
-movies_db: Dict[str, List[int]] = {}
+movies_db = {}
 
 class MovieRating(BaseModel):
     title: str
-    rating: int # rating between 1 to 10.
-     
-@app.get("/")
-def home():
-    return {"message": "Welcome to the IMDB Rating API"}
+    rating: int
 
 @app.post("/rate_movie/")
 def rate_movie(movie: MovieRating):
@@ -44,22 +38,3 @@ def get_movie_ratings(movie_title: str):
         raise HTTPException(status_code=404, detail="Movie not found")
     
     return {"title": movie_title, "ratings": movies_db[movie_title]}
-
-#Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-
-     {
-        "title": "Inception", #add movie and rating
-        "rating": 9
-     } 
-     {
-        #get average rating
-        "title": "Inception",
-        "average_rating": 9.0
-     }  
-     {
-        "movies": ["Inception"] #get all movies
-     }
-     {
-        "title": "Inception",
-        "ratings": [9] #get movie ratings
-     }
