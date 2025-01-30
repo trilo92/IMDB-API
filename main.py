@@ -16,7 +16,7 @@ def home():
 @app.post("/rate_movie")
 def rate_movie(movie: MovieRating):
     if movie.rating < 1 or movie.rating > 10:
-        raise HTTPException(status_code=400, detail="Rating must be between 1 and 10" )
+        raise HTTPException(status_code=400, detail="Rating must be between 1 and 10")
 
     if movie.title not in movies_db:
         movies_db[movie.title] = []
@@ -27,7 +27,7 @@ def rate_movie(movie: MovieRating):
     if movie_title not in movies_db or not movies_db[movie_title]:
         raise HTTPException(status_code=404, detail="Movie not found")
 
-        avg_rating = sum(movies_db[movie_title] / len(movies_db[movie_title])
+        avg_rating = sum(movies_db[movie_title] / len(movies_db[movie_title]))
         return {"title": movie_title, "average_rating": round(avg_rating, 2)}
 @app.get("/get_all_movies/")
 def get_all_movies():
